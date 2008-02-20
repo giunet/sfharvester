@@ -8,8 +8,11 @@ public class PrincipaleSettDAO extends BaseDAO{
 	
 	public void setNomeProgetto (String nomeProgetto) {
 		begin();
-		Query q = getSession().createQuery("UPDATE DatiUltSett dg SET dg.nomeProgetto='"+ nomeProgetto + "' where dg.nomeProgetto='" + nomeProgetto + "'" );
-		q.executeUpdate();
+		DatiUltSett dus = new DatiUltSett();
+		dus.setNomeProgetto(nomeProgetto);
+		//Query q = getSession().createQuery("UPDATE DatiUltSett dg SET dg.nomeProgetto='"+ nomeProgetto + "' where dg.nomeProgetto='" + nomeProgetto + "'" );
+		//q.executeUpdate();
+		getSession().save(dus);
 		commit();
 	}
 	

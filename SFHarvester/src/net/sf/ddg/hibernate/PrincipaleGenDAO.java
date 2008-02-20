@@ -8,8 +8,11 @@ public class PrincipaleGenDAO extends BaseDAO{
 	
 	public void setNomeProgetto (String nomeProgetto) {
 		begin();
-		Query q = getSession().createQuery("UPDATE DatiGenerale dg SET dg.nomeProgetto='"+ nomeProgetto + "' where dg.nomeProgetto='" + nomeProgetto + "'" );
-		q.executeUpdate();
+		DatiGenerale dg = new DatiGenerale();
+		dg.setNomeProgetto(nomeProgetto);
+		//Query q = getSession().createQuery("UPDATE DatiGenerale dg SET dg.nomeProgetto='"+ nomeProgetto + "' where dg.nomeProgetto='" + nomeProgetto + "'" );
+		//q.executeUpdate();
+		getSession().save(dg);
 		commit();
 	}
 	
