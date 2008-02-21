@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+	<table-filter match-schema="sfdb" match-name=".*" />
+	<table-filter match-catalog="sfdb" match-name="dati_generale" />
+	<table-filter match-catalog="sfdb" match-name="dati_ult_sett" />
+	<table catalog="sfdb" name="dati_generale">
+		<column name="nome_progetto" jdbc-type=''></column>
+		<column name="pr" jdbc-type=''></column>
+		<column name="pagine_accedute" jdbc-type=''></column>
+		<column name="pagine_web" jdbc-type=''></column>
+		<column name="file_scaricati" jdbc-type=''></column>
+		<column name="eta_ult_release" jdbc-type=''></column>
+		<column name="ultimo_acc_admin" jdbc-type=''></column>
+		<column name="commit_cvs" jdbc-type=''></column>
+		<column name="bug_aperti" jdbc-type=''></column>
+		<column name="bug_pendenti" jdbc-type=''></column>
+		<column name="bug_totali" jdbc-type=''></column>
+		<column name="patch_aperte" jdbc-type=''></column>
+		<column name="patch_pendenti" jdbc-type=''></column>
+		<column name="patch_totali" jdbc-type=''></column>
+		<column name="patch_chiuse" jdbc-type=''></column>
+		<column name="release_totali" jdbc-type=''></column>
+		<column name="eta_progetto" jdbc-type=''></column>
+		<column name="open_feature_request" jdbc-type=''></column>
+		<column name="pending_feature_request" jdbc-type=''></column>
+		<column name="total_feature_request" jdbc-type=''></column>
+		<column name="developers" jdbc-type=''></column>
+		<column name="development status" jdbc-type=''></column>
+	</table>
+	<table catalog="sfdb" name="dati_ult_sett">
+		<column name="nome_progetto" jdbc-type=''></column>
+		<column name="pr" jdbc-type=''></column>
+		<column name="pagine_accedute" jdbc-type=''></column>
+		<column name="pagine_web" jdbc-type=''></column>
+		<column name="file_scaricati" jdbc-type=''></column>
+		<column name="eta_ult_release" jdbc-type=''></column>
+		<column name="ultimo_acc_admin" jdbc-type=''></column>
+		<column name="commit_cvs" jdbc-type=''></column>
+		<column name="bug_aperti" jdbc-type=''></column>
+		<column name="bug_pendenti" jdbc-type=''></column>
+		<column name="bug_totali" jdbc-type=''></column>
+		<column name="patch_aperte" jdbc-type=''></column>
+		<column name="patch_pendenti" jdbc-type=''></column>
+		<column name="patch_totali" jdbc-type=''></column>
+		<column name="patch_chiuse" jdbc-type=''></column>
+		<column name="release_totali" jdbc-type=''></column>
+		<column name="open_feature_request" jdbc-type=''></column>
+		<column name="pending_feature_request" jdbc-type=''></column>
+		<column name="total_feature_request" jdbc-type=''></column>
+	</table>
+</hibernate-reverse-engineering>
