@@ -7,6 +7,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 import com.sun.org.apache.xerces.internal.impl.xs.dom.DOMParser;
+
 public class parseHTML {
 	public void contaTabella(String URL) throws SAXException, IOException{
 /*		int numeroTabelle =0;
