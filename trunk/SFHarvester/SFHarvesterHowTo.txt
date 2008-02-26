@@ -1,0 +1,14 @@
+http://sourceforge.net/tracker/index.php?func=browse&group_id=48857&atid=454373&set=custom&_assigned_to=0&_status=4&_category=100&_group=100&order=artifact_id&sort=DESC&offset=0
+
+
+http://sourceforge.net/tracker/index.php?func=browse&group_id=48857&atid=454376&set=custom&_assigned_to=0&_status=4&_category=100&_group=100&order=artifact_id&sort=DESC&offset=0
+
+http://sourceforge.net/tracker/index.php?func=browse&group_id=48857&atid=454376&set=custom&_assigned_to=0&_status=4&_category=100&_group=100&order=artifact_id&sort=DESC&offset=0
+
+
+atid 454376 sono le features request
+atid 454373 sono i bugs
+atid 454375 sono le patch
+_status 4 indica Pending
+
+Qualora una di queste pagine non dovesse essere disponibile verrà visualizzato il messaggio "Non trovato"
