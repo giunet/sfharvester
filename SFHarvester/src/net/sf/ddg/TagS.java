@@ -14,22 +14,21 @@ public class TagS {
 
 	@SuppressWarnings("deprecation")
 	public String getDatiHomePage(String osourceUrlStringurceUrlString)
-			throws MalformedURLException, IOException {
+			throws MalformedURLException, IOException, NullPointerException {
 		Source source = new Source(new URL(osourceUrlStringurceUrlString));
 		// source.fullSequentialParse();
-		List elementi = source.getElementById("sf_project_public_areas")
-				.getChildElements();
+		List elementi = source.getElementById("sf_project_public_areas").getChildElements();
 		// System.out.println(el.get(0).toString());
 		String s = null;
 		String a = null;
-		String contenuto = source.getElementById("sf_project_public_areas")
-				.extractText();
+		String contenuto = source.getElementById("sf_project_public_areas").extractText();
 		Iterator iter = elementi.iterator();
+		
 		while (iter.hasNext()) {
 			Element el = (Element) iter.next();
 			if (el.extractText().contains("Bugs")) {
 
-				s = s + el.extractText();
+				s =  s + el.extractText();
 			}
 			if (el.extractText().contains("Patches")) {
 				s = s + el.extractText();
@@ -39,21 +38,11 @@ public class TagS {
 			}
 			if (el.extractText().contains("CVS")) {
 				s = s + el.extractText();
-			} else {
-				System.out.println("è vuoto");
-			}
-		}
-		try {
+				} 
+			} 
+	
 			s = s.replace(",", "");
-		} catch (NullPointerException ex) {
-			ex.printStackTrace();
-			System.out.println("eccezione in replace");
-		} try {
 		a = this.extract(s);
-		} catch (NullPointerException ex){
-			System.out.println("eccezione in exctract");
-			ex.printStackTrace();
-		} 
 		return a;
 	}
 
@@ -91,7 +80,7 @@ public class TagS {
 				i++;
 			}
 		}
-		System.out.println(completa);
+		//System.out.println(completa);
 		return completa;
 
 	}
