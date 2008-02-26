@@ -8,6 +8,8 @@ import java.util.List;
 
 import javax.xml.xpath.XPathExpressionException;
 
+import net.sf.ddg.hibernate.PrincipaleGenDAO;
+
 import org.xml.sax.SAXException;
 
 
@@ -32,9 +34,11 @@ public class main {
 		TagS tag = new TagS();
 		Bugs b = new Bugs();
 		ArrayList<String> url = ex.extractByCategory();
+		PrincipaleGenDAO pgd = new PrincipaleGenDAO();
 		 int i =0;
 		 
 		while (i<url.size()-1){
+			pgd.setNomeProgetto(url.get(i));
 			String idprogetto = tag.extractIdProgetto(url.get(i));
 			//System.out.println(b.getCaratterisiche(idprogetto,"60990", "4"));
 			try{
