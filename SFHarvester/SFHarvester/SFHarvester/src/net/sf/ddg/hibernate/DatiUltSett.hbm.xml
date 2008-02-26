@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 19-feb-2008 16.59.34 by Hibernate Tools 3.2.0.b9 -->
+<hibernate-mapping>
+    <class name="net.sf.ddg.hibernate.DatiUltSett" table="dati_ult_sett" catalog="sfdb">
+        <comment></comment>
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <property name="nomeProgetto" type="string">
+            <column name="nome_progetto" length="45" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="pr" type="int">
+            <column name="pr" not-null="true">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="pagineAccedute" type="java.lang.Double">
+            <column name="pagine_accedute" precision="22" scale="0">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="pagineWeb" type="java.lang.Integer">
+            <column name="pagine_web">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="fileScaricati" type="java.lang.Double">
+            <column name="file_scaricati" precision="22" scale="0">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="etaUltRelease" type="java.lang.Integer">
+            <column name="eta_ult_release">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="ultimoAccAdmin" type="java.lang.Integer">
+            <column name="ultimo_acc_admin">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="commitCvs" type="java.lang.Integer">
+            <column name="commit_cvs">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="bugAperti" type="java.lang.Integer">
+            <column name="bug_aperti">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="bugPendenti" type="java.lang.Integer">
+            <column name="bug_pendenti">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="bugTotali" type="java.lang.Integer">
+            <column name="bug_totali">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="patchAperte" type="java.lang.Integer">
+            <column name="patch_aperte">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="patchPendenti" type="java.lang.Integer">
+            <column name="patch_pendenti">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="patchTotali" type="java.lang.Integer">
+            <column name="patch_totali">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="patchChiuse" type="java.lang.Integer">
+            <column name="patch_chiuse">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="releaseTotali" type="java.lang.Integer">
+            <column name="release_totali">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="openFeatureRequest" type="java.lang.Integer">
+            <column name="open_feature_request">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="pendingFeatureRequest" type="java.lang.Integer">
+            <column name="pending_feature_request">
+                <comment></comment>
+            </column>
+        </property>
+        <property name="totalFeatureRequest" type="java.lang.Integer">
+            <column name="total_feature_request">
+                <comment></comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>
