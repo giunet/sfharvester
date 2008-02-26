@@ -19,7 +19,7 @@ public class main {
 	 * @throws IOException 
 	 * @throws SAXException 
 	 */
-	public static void main(String[] args) throws XPathExpressionException, SAXException, IOException {
+	public static void main(String[] args) throws XPathExpressionException, SAXException, IOException{
 		// TODO Auto-generated method stub
 		//ExtractURL ex = new ExtractURL();
 		//ex.extract();
@@ -33,15 +33,20 @@ public class main {
 		Bugs b = new Bugs();
 		ArrayList<String> url = ex.extractByCategory();
 		 int i =0;
+		 
 		while (i<url.size()-1){
 			String idprogetto = tag.extractIdProgetto(url.get(i));
 			//System.out.println(b.getCaratterisiche(idprogetto,"60990", "4"));
+			try{
 			System.out.println(tag.getDatiHomePage(url.get(i)));
+			} catch (NullPointerException exc){
+				System.out.println("stampa 0");
+			}
 			i++;
-			
 		}
+		 
+		 }
 		
-		
-	}
+	
 
 }

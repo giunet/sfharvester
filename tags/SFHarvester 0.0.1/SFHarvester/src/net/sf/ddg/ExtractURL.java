@@ -13,7 +13,7 @@ import au.id.jericho.lib.html.Source;
 public class ExtractURL {
 	String baseUrl = "http://sourceforge.net";
 	public ArrayList<String> extractByCategory() throws MalformedURLException, IOException{
-		String url = "http://sourceforge.net/softwaremap/trove_list.php?form_cat=66";
+		String url = "http://sourceforge.net/softwaremap/trove_list.php?form_cat=66&limit=100";
 		Source source = new Source(new URL (url));
 		List progetti = source.findAllElements("h3");
 		ArrayList<String> listaUrl = new ArrayList<String>();
