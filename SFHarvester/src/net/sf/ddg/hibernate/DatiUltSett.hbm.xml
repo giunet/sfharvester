@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 19-feb-2008 16.59.34 by Hibernate Tools 3.2.0.b9 -->
+<!-- Generated 26-feb-2008 12.40.26 by Hibernate Tools 3.2.0.b9 -->
 <hibernate-mapping>
-    <class name="net.sf.ddg.hibernate.DatiUltSett" table="dati_ult_sett" catalog="sfdb">
+    <class name="DatiUltSett" table="dati_ult_sett" catalog="sfdb">
         <comment></comment>
         <id name="id" type="int">
             <column name="id" />
@@ -14,8 +14,8 @@
                 <comment></comment>
             </column>
         </property>
-        <property name="pr" type="int">
-            <column name="pr" not-null="true">
+        <property name="pr" type="java.lang.Integer">
+            <column name="pr">
                 <comment></comment>
             </column>
         </property>
