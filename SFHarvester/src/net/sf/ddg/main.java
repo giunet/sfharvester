@@ -33,16 +33,16 @@ public class main {
 		ExtractURL ex = new ExtractURL();
 		TagS tag = new TagS();
 		Bugs b = new Bugs();
-		ArrayList<String> url = ex.extractByCategory();
+		ArrayList<String> url = ex.extractByCategory(); //prende tutti gli URL dei progetti
 		PrincipaleGenDAO pgd = new PrincipaleGenDAO();
 		 int i =0;
 		 
 		while (i<url.size()-1){
-			pgd.setNomeProgetto(url.get(i));
-			String idprogetto = tag.extractIdProgetto(url.get(i));
+			pgd.setNomeProgetto(url.get(i));  //dall URL prendi nome progetto
+			String idprogetto = tag.extractIdProgetto(url.get(i)); //dall URL prendi id progetto
 			//System.out.println(b.getCaratterisiche(idprogetto,"60990", "4"));
 			try{
-			System.out.println(tag.getDatiHomePage(url.get(i)));
+			System.out.println(tag.getDatiHomePage(url.get(i)));  // prende Bugs, Patvh, Feature , CVS
 			} catch (NullPointerException exc){
 				System.out.println("stampa 0");
 			}

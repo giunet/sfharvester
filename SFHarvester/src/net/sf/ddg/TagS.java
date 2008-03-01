@@ -17,17 +17,17 @@ public class TagS {
 			throws MalformedURLException, IOException, NullPointerException {
 		Source source = new Source(new URL(osourceUrlStringurceUrlString));
 		// source.fullSequentialParse();
-		List elementi = source.getElementById("sf_project_public_areas").getChildElements();
+		//prende gli elementi presenti nel div "sf_project_public_areas"
+		List elementi = source.getElementById("sf_project_public_areas").getChildElements();  
 		// System.out.println(el.get(0).toString());
 		String s = null;
 		String a = null;
-		String contenuto = source.getElementById("sf_project_public_areas").extractText();
+		// contenuto = source.getElementById("sf_project_public_areas").extractText();
 		Iterator iter = elementi.iterator();
 		
-		while (iter.hasNext()) {
-			Element el = (Element) iter.next();
+		while (iter.hasNext()) {   // per ogni elemento 
+			Element el = (Element) iter.next();  // elemento corrente
 			if (el.extractText().contains("Bugs")) {
-
 				s =  s + el.extractText();
 			}
 			if (el.extractText().contains("Patches")) {
@@ -66,15 +66,15 @@ public class TagS {
 			throws MalformedURLException, IOException {
 		Source source = new Source(new URL(sourceUrlString));
 		String patt = "group_id";
-		List link = source.findAllElements("a");
+		List link = source.findAllElements("a"); //lista elementi a 
 		int i = 0;
 		String completa = null;
 		while (i < link.size() - 1) {
-			Element el = (Element) link.get(i);
-			if (el.getAttributeValue("href").contains(patt)) {
+			Element el = (Element) link.get(i); //elemento corrente
+			if (el.getAttributeValue("href").contains(patt)) { //vedi se l url ha patt group_id
 				completa = el.getAttributeValue("href");
 				// System.out.println(completa);
-				completa = this.extract(completa);
+				completa = this.extract(completa);  //estrae l ID del progetto
 				break;
 			} else {
 				i++;
