@@ -40,9 +40,8 @@ public class main {
 		while (i<url.size()-1){
 			pgd.setNomeProgetto(url.get(i));  //dall URL prendi nome progetto
 			String idprogetto = tag.extractIdProgetto(url.get(i)); //dall URL prendi id progetto
-			//System.out.println(b.getCaratterisiche(idprogetto,"60990", "4"));
 			try{
-			System.out.println(tag.getDatiHomePage(url.get(i)));  // prende Bugs, Patvh, Feature , CVS
+			System.out.println(tag.getDatiHomePage(url.get(i)));  // prende Bugs, Patch, Feature , CVS
 			} catch (NullPointerException exc){
 				System.out.println("stampa 0");
 			}
