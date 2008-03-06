@@ -28,16 +28,16 @@ public class TagS {
 		while (iter.hasNext()) {   // per ogni elemento 
 			Element el = (Element) iter.next();  // elemento corrente
 			if (el.extractText().contains("Bugs")) {
-				s =  s + el.extractText();
+				s =  s + "Bugs are: " +el.extractText();
 			}
 			if (el.extractText().contains("Patches")) {
-				s = s + el.extractText();
+				s = s + "Patches are: " + el.extractText();
 			}
 			if (el.extractText().contains("Feature")) {
-				s = s + el.extractText();
+				s = s + "Feature are: "+el.extractText();
 			}
 			if (el.extractText().contains("CVS")) {
-				s = s + el.extractText();
+				s = s +"CVS are: " +el.extractText();
 				} 
 			} 
 	
