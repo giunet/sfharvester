@@ -22,29 +22,33 @@ public class main {
 	 * @throws SAXException 
 	 */
 	public static void main(String[] args) throws XPathExpressionException, SAXException, IOException{
-		// TODO Auto-generated method stub
-		//ExtractURL ex = new ExtractURL();
-		//ex.extract();
-		//TagS t = new TagS();
-		//t.extractidProgetto();
-		//t.extract(t.homePage());
-		//Bugs b =new  Bugs();
-		//b.getCaratterisiche("454376", "4");
+		
 		ExtractURL ex = new ExtractURL();
 		TagS tag = new TagS();
 		Bugs b = new Bugs();
 		ArrayList<String> url = ex.extractByCategory(); //prende tutti gli URL dei progetti
-		PrincipaleGenDAO pgd = new PrincipaleGenDAO();
+		//PrincipaleGenDAO pgd = new PrincipaleGenDAO();
 		 int i =0;
 		 
 		while (i<url.size()-1){
-			pgd.setNomeProgetto(url.get(i));  //dall URL prendi nome progetto
+			//pgd.setNomeProgetto(url.get(i));  //dall URL prendi nome progetto
 			String idprogetto = tag.extractIdProgetto(url.get(i)); //dall URL prendi id progetto
-			try{
-			System.out.println(tag.getDatiHomePage(url.get(i)));  // prende Bugs, Patch, Feature , CVS
-			} catch (NullPointerException exc){
-				System.out.println("stampa 0");
-			}
+			//System.out.println(tag.getDatiHomePage(url.get(i)));  // prende Bugs, Patch, Feature , CVS
+				String patchopen= tag.getPatches(url.get(i))[1];
+				String patchtotal= tag.getPatches(url.get(i))[2];
+				System.out.println("le patch sono: "+patchopen+" "+patchtotal);
+				String bugsopen= tag.getBugs(url.get(i))[1];
+				String bugstotal= tag.getBugs(url.get(i))[2];
+				System.out.println("i bugs sono: "+bugsopen+" "+bugstotal);
+				String featureopen= tag.getFeature(url.get(i))[1];
+				String featuretotal= tag.getFeature(url.get(i))[2];
+				System.out.println("le feature sono: "+featureopen+" "+featuretotal);
+				String CVSopen= tag.getCVS(url.get(i))[1];
+				String CVStotal= tag.getCVS(url.get(i))[2];
+				System.out.println("commit cvs sono: "+CVSopen+" "+CVStotal);
+			System.out.println("Bug pendenti : ");
+			System.out.println(b.getCaratterisiche("176962","879332","" ));
+			
 			i++;
 		}
 		 
