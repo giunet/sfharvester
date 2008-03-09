@@ -53,6 +53,13 @@ public class TagS {
 		return a;
 	}*/
 
+	public String extractNomeProgetto(String url){
+		
+		String[] item_page = url.split("/");
+		int indice = item_page.length;
+		return item_page[indice-1];
+	}
+	
 	public String[] getPatches(String osourceUrlStringurceUrlString)
 	throws MalformedURLException, IOException {
 Source source = new Source(new URL(osourceUrlStringurceUrlString));
