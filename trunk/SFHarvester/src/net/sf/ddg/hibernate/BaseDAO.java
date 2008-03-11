@@ -11,7 +11,7 @@ import org.hibernate.cfg.Configuration;
 
 public class BaseDAO {
 
-	ResourceBundle bundle = ResourceBundle.getBundle( "CommandResources" );
+
 	protected BaseDAO() {
 	}
 
