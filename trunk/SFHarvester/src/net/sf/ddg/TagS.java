@@ -3,6 +3,7 @@ package net.sf.ddg;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -13,45 +14,6 @@ import au.id.jericho.lib.html.Source;
 public class TagS {
 
 	@SuppressWarnings("deprecation")
-/*	public String getDatiHomePage(String osourceUrlStringurceUrlString)
-			throws MalformedURLException, IOException, NullPointerException {
-		Source source = new Source(new URL(osourceUrlStringurceUrlString));
-		//prende gli elementi presenti nel div "sf_project_public_areas"
-		List elementi = source.getElementById("sf_project_public_areas").getChildElements();  
-		String s = null;
-		String a = null;
-		// contenuto = source.getElementById("sf_project_public_areas").extractText();
-		Iterator iter = elementi.iterator();
-		while (iter.hasNext()) {   // per ogni elemento 
-			Element el = (Element) iter.next();  // elemento corrente
-			if (el.extractText().contains("Bugs")) {
-				s = el.extractText();
-				s = s.replace(",", "");
-				a = this.extract(s);
-				System.out.println("Bugs sono : "+a);
-			}
-			if (el.extractText().contains("Patches")) {
-				s = el.extractText();
-				s = s.replace(",", "");
-				a = this.extract(s);
-				System.out.println("Patch sono : "+a);
-			}
-			if (el.extractText().contains("Feature")) {
-				s = el.extractText();
-				s = s.replace(",", "");
-				a = this.extract(s);
-				System.out.println("Feature sono : "+a);
-			}
-			if (el.extractText().contains("CVS")) {
-				s = el.extractText();
-				s = s.replace(",", "");
-				a = this.extract(s);
-				System.out.println("CVS sono : "+a);
-				} 
-			} 
-		a = this.extract(s);
-		return a;
-	}*/
 
 	public String extractNomeProgetto(String url){
 		
@@ -67,14 +29,18 @@ Source source = new Source(new URL(osourceUrlStringurceUrlString));
 List elementi = source.getElementById("sf_project_public_areas").getChildElements();  
 String s = null;
 String[] a = {"0","0","0"};
-// contenuto = source.getElementById("sf_project_public_areas").extractText();
+String[] idpatch={"0"};
 Iterator iter = elementi.iterator();
 while (iter.hasNext()) {   // per ogni elemento 
 	Element el = (Element) iter.next();  // elemento corrente
 	if (el.extractText().contains("Patches")) {
+		Element href= (Element) el.getChildElements().get(0);
+		String stringa=href.getAttributeValue("href");
+		idpatch=this.extract(stringa);
 		s = el.extractText();
 		s = s.replace(",", "");
 		a = this.extract(s);
+		a[0]=idpatch[1];
 		}
 	} 
 	
@@ -88,15 +54,19 @@ Source source = new Source(new URL(osourceUrlStringurceUrlString));
 List elementi = source.getElementById("sf_project_public_areas").getChildElements();  
 String s = null;
 String[] b = {"0","0","0"};
-// contenuto = source.getElementById("sf_project_public_areas").extractText();
+String[] idbugs={"0"};
 Iterator iter = elementi.iterator();
 while (iter.hasNext()) {   // per ogni elemento 
 	Element el = (Element) iter.next();  // elemento corrente
 	if (el.extractText().contains("Bugs")) {
+		Element href= (Element) el.getChildElements().get(0);
+		String stringa=href.getAttributeValue("href");
+		idbugs=this.extract(stringa);
 		s = el.extractText();
 		s = s.replace(",", "");
 		b = this.extract(s);
-		}
+		b[0]=idbugs[1];
+	}
 	} 
 	
 return b;
@@ -109,15 +79,19 @@ Source source = new Source(new URL(osourceUrlStringurceUrlString));
 List elementi = source.getElementById("sf_project_public_areas").getChildElements();  
 String s = null;
 String[] c = {"0","0","0"};
-// contenuto = source.getElementById("sf_project_public_areas").extractText();
+String[] idfeature={"0"};
 Iterator iter = elementi.iterator();
 while (iter.hasNext()) {   // per ogni elemento 
 	Element el = (Element) iter.next();  // elemento corrente
 	if (el.extractText().contains("Feature")) {
+		Element href= (Element) el.getChildElements().get(0);
+		String stringa=href.getAttributeValue("href");
+		idfeature=this.extract(stringa);
 		s = el.extractText();
 		s = s.replace(",", "");
 		c = this.extract(s);
-		}
+		c[0]=idfeature[1];
+	}
 	} 
 		
 return c;
@@ -172,9 +146,104 @@ return d;
 				i++;
 			}
 		}
-		//System.out.println(completa);
 		return completa[1];
 
 	}
 
+	public String getDevelopers(String osourceUrlStringurceUrlString) 
+		throws MalformedURLException, IOException,NullPointerException {
+		Source source = new Source(new URL(osourceUrlStringurceUrlString));
+		String s="non trovato";
+		List link = source.findAllElements("div");
+		int i =0;
+		while (i < link.size()-1){
+			Element el = (Element) link.get(i); //elemento corrente
+			try{
+			if (el.getAttributeValue("style").contains("width: 59%; float: left; ")) {
+				Element ele= (Element) el.findAllElements("ul").get(0);
+				List finale=ele.getChildElements();
+				Iterator iter = finale.iterator();
+				while (iter.hasNext()) {   // per ogni elemento 
+					Element attuale = (Element) iter.next();
+					if (attuale.extractText().contains("Developers")) {
+						s = attuale.extractText();
+						s = s.replace(",", "");
+						s = this.extract(s)[1];
+						break;
+						}
+				}
+			}
+			}catch(NullPointerException ex){
+			}
+			
+			++i;
+		}
+		return s;	
+	}
+
+	public String getDevelopmentStatus(String osourceUrlStringurceUrlString) 
+		throws MalformedURLException, IOException,NullPointerException {
+			Source source = new Source(new URL(osourceUrlStringurceUrlString));
+			String s="non trovato";
+			List link = source.findAllElements("div");
+			int i =0;
+			while (i < link.size()-1){
+				Element el = (Element) link.get(i); //elemento corrente
+				try{
+				if (el.getAttributeValue("style").contains("width: 59%; float: left; ")) {
+					Element ele= (Element) el.findAllElements("ul").get(0);
+					List finale=ele.getChildElements();
+					Iterator iter = finale.iterator();
+					while (iter.hasNext()) {   // per ogni elemento 
+						Element attuale = (Element) iter.next();
+						if (attuale.extractText().contains("Development Status")) {
+							s = attuale.extractText();
+							s=this.extract(s)[1];
+							break;
+							}
+					}
+				}
+				}catch(NullPointerException ex){
+				}
+				
+				++i;
+			}
+			return s;	
+		}
+
+	public String[] getEtàProgetto(String osourceUrlStringurceUrlString) 
+	throws MalformedURLException, IOException,NullPointerException {
+		Source source = new Source(new URL(osourceUrlStringurceUrlString));
+		String s="null";
+		String[] data={"null","null","null","null"};
+		List link = source.findAllElements("div");
+		int i =0;
+		while (i < link.size()-1){
+			Element el = (Element) link.get(i); //elemento corrente
+			try{
+			if (el.getAttributeValue("style").contains("width: 59%; float: left; ")) {
+				Element ele= (Element) el.findAllElements("ul").get(0);
+				List finale=ele.getChildElements();
+				Iterator iter = finale.iterator();
+				while (iter.hasNext()) {   // per ogni elemento 
+					Element attuale = (Element) iter.next();
+					if (attuale.extractText().contains("Registered")) {
+						s = attuale.extractText();
+						data=this.extract(s);
+						String anno=data[1];
+						String mese=data[2];
+						String giorno=data[3];
+						break;
+						}
+				}
+			}
+			}catch(NullPointerException ex){
+			}
+			
+			++i;
+		}
+		return data;	
+	}
+	
+	
 }

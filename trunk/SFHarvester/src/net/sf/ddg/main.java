@@ -36,21 +36,52 @@ public class main {
 			String nomeprogetto = tag.extractNomeProgetto(url.get(i)); //nome del progetto
 			System.out.println("Il progetto Ë : "+nomeprogetto);
 			//vengono presi bugs,patch,feature,cvs
-			String patchopen= tag.getPatches(url.get(i))[1];
-			String patchtotal= tag.getPatches(url.get(i))[2];
-			System.out.println("le patch sono: "+patchopen+" "+patchtotal);
-			String bugsopen= tag.getBugs(url.get(i))[1];
-			String bugstotal= tag.getBugs(url.get(i))[2];
-			System.out.println("i bugs sono: "+bugsopen+" "+bugstotal);
-			String featureopen= tag.getFeature(url.get(i))[1];
-			String featuretotal= tag.getFeature(url.get(i))[2];
-			System.out.println("le feature sono: "+featureopen+" "+featuretotal);
-			String CVSopen= tag.getCVS(url.get(i))[1];
-			String CVStotal= tag.getCVS(url.get(i))[2];
-			System.out.println("commit cvs sono: "+CVSopen+" "+CVStotal);
-			System.out.println("Bug pendenti : ");
-			System.out.println(b.getCaratterisiche("176962","879332","" ));
+			String[] elepatch= tag.getPatches(url.get(i));
+			String idpatch=elepatch[0];
+			String patchopen= elepatch[1];
+			String patchtotal= elepatch[2];
+			System.out.println("le patch sono: "+patchopen+" "+patchtotal+" L'ID Ë: "+ idpatch);
+			if (patchtotal!="0"){
+				 //100 any 1 open 2 closed 3 deleted 4 pending
+				int patchpending=b.getCaratterisiche(idprogetto, idpatch, "4");
+				System.out.println("Patch pending :"+patchpending);
+				int patchchiuse=b.getCaratterisiche(idprogetto, idpatch, "2");
+				System.out.println("Patch closed :"+patchchiuse);
+			}
 			
+			String[] elebugs= tag.getBugs(url.get(i));
+			String idbugs=elebugs[0];
+			String bugsopen= elebugs[1];
+			String bugstotal= elebugs[2];
+			System.out.println("i bugs sono: "+bugsopen+" "+bugstotal+" L'ID Ë: "+ idbugs);
+			if (bugstotal!="0"){
+				 //100 any 1 open 2 closed 3 deleted 4 pending
+				int bugpending=b.getCaratterisiche(idprogetto, idbugs, "4");
+				System.out.println("Bugs pending :"+bugpending);
+			}
+			
+			String[] elefeature=tag.getFeature(url.get(i));
+			String idfeature= elefeature [0];
+			String featureopen= elefeature[1];
+			String featuretotal= elefeature[2];
+			System.out.println("le feature sono: "+featureopen+" "+featuretotal+" L'ID Ë: "+ idfeature);
+			if (featuretotal!="0"){
+				 //100 any 1 open 2 closed 3 deleted 4 pending
+				int featurepending=b.getCaratterisiche(idprogetto, idfeature, "4");
+				System.out.println("Feature pending :"+featurepending);
+			}
+			
+			String[] eleCVS=tag.getCVS(url.get(i));
+			String CVS= eleCVS[1];
+			//String CVStotal= eleCVS[2];
+			System.out.println("commit cvs sono: "+CVS);
+			
+			String developers=tag.getDevelopers(url.get(i));
+			System.out.println("Sviluppatori : "+developers);
+			String developmentstatus= tag.getDevelopmentStatus(url.get(i));
+			System.out.println("Stato : "+developmentstatus);
+			String[] giorno=tag.getEt‡Progetto(url.get(i));			
+			System.out.println("Anno : "+giorno[1]+" Mese : "+giorno[2]+" Giorno : "+giorno[3]);
 			i++;
 		}
 		 
