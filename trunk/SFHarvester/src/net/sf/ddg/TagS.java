@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -211,13 +212,14 @@ return d;
 			return s;	
 		}
 
-	public String[] getEt‡Progetto(String osourceUrlStringurceUrlString) 
+	public long getEt‡Progetto(String osourceUrlStringurceUrlString) 
 	throws MalformedURLException, IOException,NullPointerException {
 		Source source = new Source(new URL(osourceUrlStringurceUrlString));
 		String s="null";
 		String[] data={"null","null","null","null"};
 		List link = source.findAllElements("div");
 		int i =0;
+		long eta=0;
 		while (i < link.size()-1){
 			Element el = (Element) link.get(i); //elemento corrente
 			try{
@@ -230,9 +232,7 @@ return d;
 					if (attuale.extractText().contains("Registered")) {
 						s = attuale.extractText();
 						data=this.extract(s);
-						String anno=data[1];
-						String mese=data[2];
-						String giorno=data[3];
+						eta=calcolagiorni(data);
 						break;
 						}
 				}
@@ -242,7 +242,17 @@ return d;
 			
 			++i;
 		}
-		return data;	
+		return eta;	
+	}
+
+	private long calcolagiorni(String[] data) {
+		int anno= Integer.parseInt(data[1],10);
+		int mese= Integer.parseInt(data[2],10)-1;
+		int giorno= Integer.parseInt(data[3],10);
+		GregorianCalendar dataprogetto= new GregorianCalendar (anno,mese,giorno);
+		GregorianCalendar attuale= new GregorianCalendar();
+		long eta=(attuale.getTimeInMillis()-dataprogetto.getTimeInMillis())/86400000;
+		return eta;
 	}
 	
 	

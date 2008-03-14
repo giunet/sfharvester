@@ -80,8 +80,8 @@ public class main {
 			System.out.println("Sviluppatori : "+developers);
 			String developmentstatus= tag.getDevelopmentStatus(url.get(i));
 			System.out.println("Stato : "+developmentstatus);
-			String[] giorno=tag.getEt‡Progetto(url.get(i));			
-			System.out.println("Anno : "+giorno[1]+" Mese : "+giorno[2]+" Giorno : "+giorno[3]);
+			long etaprogetto=tag.getEt‡Progetto(url.get(i));			
+			System.out.println("Il progetto ha :"+etaprogetto+" giorni");
 			i++;
 		}
 		 
