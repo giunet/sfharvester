@@ -25,14 +25,13 @@ public class ExtractURL {
 			Element ln = (Element) link.get(0);       //prende il primo tag a
 			String progetto = ln.getAttributeValue("href");    //prende attributo href di a
 			String urlcompleta = baseUrl.concat(progetto);    //crea il link del progetto
+			String dati=ln.extractText(); //contiene o il nome del progetto o il PR
 			listaUrl.add(urlcompleta);
+			listaUrl.add (dati);
 			//System.out.println(baseUrl.concat(ln.getAttributeValue("href")));
-			i=i+2;
+			i=i+1;
 		}
 		return listaUrl;
-		
-		
-		
 	}
 
 }

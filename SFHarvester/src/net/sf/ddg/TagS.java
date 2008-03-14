@@ -15,13 +15,6 @@ import au.id.jericho.lib.html.Source;
 public class TagS {
 
 	@SuppressWarnings("deprecation")
-
-	public String extractNomeProgetto(String url){
-		
-		String[] item_page = url.split("/");
-		int indice = item_page.length;
-		return item_page[indice-1];
-	}
 	
 	public String[] getPatches(String osourceUrlStringurceUrlString)
 	throws MalformedURLException, IOException {
@@ -254,6 +247,79 @@ return d;
 		long eta=(attuale.getTimeInMillis()-dataprogetto.getTimeInMillis())/86400000;
 		return eta;
 	}
+
+	public String[] getAdminErelease(String osourceUrlStringurceUrlString) 
+	throws MalformedURLException, IOException,NullPointerException {
+		Source source = new Source(new URL(osourceUrlStringurceUrlString));
+		String[] accessoErelease={"non trovato","non trovato"};
+		List link = source.findAllElements("table");
+		Element tabella = (Element) link.get(0);
+		Element riga=(Element) tabella.findAllElements("tr").get(1);
+		Element td=(Element)riga.findAllElements("td").get(8);
+		Element td2=(Element)riga.findAllElements("td").get(7);
+		String testo= td.extractText();
+		String testo2=td2.extractText();
+		accessoErelease[0]=this.extract(testo)[0];
+		accessoErelease[1]=this.extract(testo2)[0];
+		return accessoErelease;
+	}
+
+	public String getNumRelease(String idprogetto) 
+	throws MalformedURLException, IOException,NullPointerException{
+		String urlfinale="http://sourceforge.net/project/showfiles.php?group_id="+idprogetto;
+		String numero="non trovato";
+		Source source = new Source(new URL(urlfinale));
+		Element tfoot=(Element)source.findAllElements("tfoot").get(1);
+		Element release= (Element)tfoot.findAllElements("td").get(1);
+		numero=release.extractText();
+		return numero;
+		
+	}
 	
+public String extractugn(String url){
+		
+		String[] item_page = url.split("/");
+		int indice = item_page.length;
+		return item_page[indice-1];
+	}
+
+public String[] getPagineAcceduteAllTime(String idprogetto, String ugn) 
+	throws MalformedURLException, IOException,NullPointerException{		
+	String baseUrlalltime="http://sourceforge.net/project/stats/detail.php?group_id="+idprogetto+"&ugn="+ugn+"&mode=alltime&type=sfweb";
+	String[] pagineaccedute={"non trovato","non trovato","non trovato","non trovato"};
+	Source sourcealltime = new Source(new URL(baseUrlalltime));
+	String p=null;
+	Element table = (Element)sourcealltime.findAllElements("table").get(2);
+	List td=table.findAllElements("td");
+	int indice=td.size();
+	Element pagSF=(Element)td.get(indice-2);
+	pagineaccedute[0]=pagSF.extractText();
+	pagineaccedute[0] = pagineaccedute[0].replace(",", "");
+	Element pagWEB=(Element)td.get(indice-1);
+	pagineaccedute[1]=pagWEB.extractText();
+	pagineaccedute[1] = pagineaccedute[1].replace(",", "");
+	return pagineaccedute;
+}
+
+public String getDownloadTime(String idprogetto, String ugn) 
+throws MalformedURLException, IOException,NullPointerException{		
+String baseUrltime="http://sourceforge.net/project/stats/detail.php?group_id="+idprogetto+"&ugn="+ugn+"&mode=alltime&type=prdownload";
+String download="non trovato";
+Source sourcetime = new Source(new URL(baseUrltime));
+
+String p=null;
+try{
+Element table = (Element)sourcetime.findAllElements("table").get(2);
+List td=table.findAllElements("td");
+int indice=td.size();
+Element downTime=(Element)td.get(indice-2);
+download=downTime.extractText();
+download = download.replace(",", "");
+}
+catch(IndexOutOfBoundsException ex){
+	download=getDownloadTime(idprogetto,ugn);
+}
+return download;
+}
 	
 }
