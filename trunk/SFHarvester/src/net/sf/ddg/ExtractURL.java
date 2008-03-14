@@ -19,7 +19,7 @@ public class ExtractURL {
 		List progetti = source.findAllElements("h3");
 		ArrayList<String> listaUrl = new ArrayList<String>();  //liste degli URL dei progetti
 		int i = 1;
-		while (i<progetti.size()){
+		while (i<progetti.size()-1){
 			Element el = (Element) progetti.get(i); //progetto corrente
 			List link = el.findAllElements("a");   //prende i tag a all interno di h3
 			Element ln = (Element) link.get(0);       //prende il primo tag a
