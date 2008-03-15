@@ -14,6 +14,8 @@ import au.id.jericho.lib.html.Source;
 
 public class Week {
 
+	String notFound = "No matches found.";
+	
 	public String[] getPagineAcceduteWeek(String idprogetto, String ugn) 
 	throws MalformedURLException, IOException,NullPointerException{		
 	String baseUrlweek="http://sourceforge.net/project/stats/detail.php?group_id="+idprogetto+"&ugn="+ugn+"&mode=week&type=sfweb";
@@ -94,5 +96,38 @@ public class Week {
 
 		return cvs;
 		}
+
+	public int getCaratteristicheWeek(String projectId, String caratteristica,
+			String tipo) throws MalformedURLException, IOException{
+		Bugs b=new Bugs();
+		TagS t=new TagS();
+		int numtab = 0;
+		int offset=0;
+		String url = b.creaurl(projectId,caratteristica,tipo,offset);
+		Source source=new Source(new URL(url));
+		while (!(source.extractText().contains(notFound))){
+			List<Element> elementi=source.findAllElements("table");
+			Element tab = elementi.get(1);
+			List tr=tab.findAllElements("tr");
+			int i =1;
+			while (i<tr.size()-1){   //-1 per evitare l eccezione: quando ci sono 50 elementi viene aggiunta una nuova riga
+				Element attuale=(Element)tr.get(i);
+				String fa=((Element)attuale.findAllElements("td").get(2)).extractText();
+				String[] numeri=t.extract(fa);
+				long giorni=t.calcolagiorni(numeri);
+				if(giorni <=7){
+					++numtab;
+				}else{break;}
+				++i;
+			}
+			offset=offset+50;
+			if(numtab+1==offset){
+				url = b.creaurl(projectId,caratteristica,tipo,offset);
+				source=new Source(new URL(url));
+			}else{break;}
+		}	
+		
+		return numtab;
+	}
 	
 }

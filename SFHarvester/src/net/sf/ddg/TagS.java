@@ -238,7 +238,7 @@ return d;
 		return eta;	
 	}
 
-	private long calcolagiorni(String[] data) {
+	public long calcolagiorni(String[] data) {
 		int anno= Integer.parseInt(data[1],10);
 		int mese= Integer.parseInt(data[2],10)-1;
 		int giorno= Integer.parseInt(data[3],10);

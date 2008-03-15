@@ -130,58 +130,64 @@ public class main {
 			
 			int patchopenweek=0;
 			if(patchopen!="0"){
-				//calcola patch aperti settimanali
+				//100 any 1 open 2 closed 3 deleted 4 pending
+				patchopenweek=week.getCaratteristicheWeek(idprogetto, idpatch, "1");
 			}
-			System.out.println("Bug aperti settimanali sono :"+patchopenweek);
+			System.out.println("Patch aperti settimanali sono :"+patchopenweek);
 			
 			int patchtotalweek=0;
 			if(patchtotal!="0"){
-				//calcola patch totali settimanali
+				patchtotalweek=week.getCaratteristicheWeek(idprogetto, idpatch, "100");
 			}
-			System.out.println("Bug aperti settimanali sono :"+patchtotalweek);
+			System.out.println("Patch totali settimanali sono :"+patchtotalweek);
 			
 			int patchpendingweek=0;
 			if(patchpending!=0){
-				//calcola patch pending settimanali
+				patchpendingweek=week.getCaratteristicheWeek(idprogetto, idpatch, "4");
 			}
-			System.out.println("Bug aperti settimanali sono :"+patchpendingweek);
+			System.out.println("Patch pending settimanali sono :"+patchpendingweek);
 			
 			int patchchiuseweek=0;
 			if(patchchiuse!=0){
-				//calcola patch chiuse settimanali
+				patchchiuseweek=week.getCaratteristicheWeek(idprogetto, idpatch, "2");
 			}
-			System.out.println("Bug aperti settimanali sono :"+patchchiuseweek);
+			System.out.println("Patch chiuse settimanali sono :"+patchchiuseweek);
 			
 			int bugopenweek=0;
 			if(bugsopen!="0"){
-				//calcola bug aperti settimanali
+				bugopenweek=week.getCaratteristicheWeek(idprogetto, idbugs, "1");
 			}
 			System.out.println("Bug aperti settimanali sono :"+bugopenweek);
+			
 			int bugtotalweek=0;
 			if(bugstotal!="0"){
-				//calcola bug totali settimanali
+				bugtotalweek=week.getCaratteristicheWeek(idprogetto, idbugs, "100");
 			}
 			System.out.println("Bug totali settimanali sono :"+bugtotalweek);
+			
 			int bugpendingweek=0;
 			if(bugpending!=0){
-				//calcola bug pending settimanali
+				bugpendingweek=week.getCaratteristicheWeek(idprogetto, idbugs, "4");
 			}
-			System.out.println("Bug totali settimanali sono :"+bugpendingweek);
+			System.out.println("Bug pending settimanali sono :"+bugpendingweek);
+			
 			int featureopenweek=0;
 			if(featureopen!="0"){
-				//calcola feature aperti settimanali
+				featureopenweek=week.getCaratteristicheWeek(idprogetto, idfeature, "1");
 			}
-			System.out.println("Bug aperti settimanali sono :"+featureopenweek);
+			System.out.println("Feature aperti settimanali sono :"+featureopenweek);
+			
 			int featuretotalweek=0;
 			if(featuretotal!="0"){
-				//calcola feature totali settimanali
+				featuretotalweek=week.getCaratteristicheWeek(idprogetto, idfeature, "100");
 			}
-			System.out.println("Bug totali settimanali sono :"+featuretotalweek);
+			System.out.println("Feature totali settimanali sono :"+featuretotalweek);
+			
 			int featurependingweek=0;
 			if(featurepending!=0){
-				//calcola feature pending settimanali
+				featurependingweek=week.getCaratteristicheWeek(idprogetto, idfeature, "4");
 			}
-			System.out.println("Bug totali settimanali sono :"+featurependingweek);
+			System.out.println("Feture pending settimanali sono :"+featurependingweek);
 			
 			
 			System.out.println("");

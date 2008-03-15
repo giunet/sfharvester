@@ -31,7 +31,7 @@ public class Bugs {
 				Element tab = elementi.get(1);
 				offset=offset-50;
 				numtab =tab.findAllElements("tr").size()-1+offset;
-				source=new Source(new URL(urlattuale)); //fa uscire dal while
+				break;
 			}
 			else{
 				urlprecedente=urlattuale;
@@ -42,7 +42,7 @@ public class Bugs {
 		return numtab;
 	}
 	
-	private String creaurl(String projectId, String caratteristica,
+	public String creaurl(String projectId, String caratteristica,
 			String tipo, int offset) {
 		String url = baseUrl.concat(projectId).concat("&atid=").concat(caratteristica).concat("&set=custom&_assigned_to=0").concat("&_status=").concat(tipo).concat("&_category=100&_group=100&order=artifact_id&sort=DESC&offset=")+offset;
 		return url;
