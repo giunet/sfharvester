@@ -1,7 +1,9 @@
 package net.sf.ddg;
 
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -27,13 +29,16 @@ public class main {
 		TagS tag = new TagS();
 		Bugs b = new Bugs();
 		Week week= new Week();
-		ArrayList<String> urlEstat = ex.extractByCategory(); //prende tutti gli URL dei progetti e delle statistiche
+		System.out.print("Inserisci l url della lista dei progetti: "); 
+		InputStreamReader converter = new InputStreamReader(System.in);
+		BufferedReader in = new BufferedReader(converter);
+		String urlprogetti = in.readLine();
+		ArrayList<String> urlEstat = ex.extractByCategory(urlprogetti); //prende tutti gli URL dei progetti e delle statistiche
 		//PrincipaleGenDAO pgd = new PrincipaleGenDAO();
 		int i =0;
 		//la lista urlStat contiene l url della pag.principale e succ. l url delle statistiche
 		//pertanto per andare da un progetto all altro fare i=i+2 anziche i++
 		while (i<urlEstat.size()-1){
-			//pgd.setNomeProgetto(url.get(i));  //dall URL prendi nome progetto
 			String idprogetto = tag.extractIdProgetto(urlEstat.get(i)); //dall URL prendi id progetto
 			String nomeprogetto = urlEstat.get(i+1); //nome del progetto
 			String ProRank=urlEstat.get(i+3);
