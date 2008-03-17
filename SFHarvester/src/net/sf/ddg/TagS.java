@@ -147,7 +147,7 @@ return d;
 	public String getDevelopers(String osourceUrlStringurceUrlString) 
 		throws MalformedURLException, IOException,NullPointerException {
 		Source source = new Source(new URL(osourceUrlStringurceUrlString));
-		String s="non trovato";
+		String s="0";
 		List link = source.findAllElements("div");
 		int i =0;
 		while (i < link.size()-1){
@@ -178,7 +178,7 @@ return d;
 	public String getDevelopmentStatus(String osourceUrlStringurceUrlString) 
 		throws MalformedURLException, IOException,NullPointerException {
 			Source source = new Source(new URL(osourceUrlStringurceUrlString));
-			String s="non trovato";
+			String s="0";
 			List link = source.findAllElements("div");
 			int i =0;
 			while (i < link.size()-1){
@@ -208,7 +208,7 @@ return d;
 	public long getEtàProgetto(String osourceUrlStringurceUrlString) 
 	throws MalformedURLException, IOException,NullPointerException {
 		Source source = new Source(new URL(osourceUrlStringurceUrlString));
-		String s="null";
+		String s="0";
 		String[] data={"null","null","null","null"};
 		List link = source.findAllElements("div");
 		int i =0;
@@ -251,7 +251,7 @@ return d;
 	public String[] getAdminErelease(String osourceUrlStringurceUrlString) 
 	throws MalformedURLException, IOException,NullPointerException {
 		Source source = new Source(new URL(osourceUrlStringurceUrlString));
-		String[] accessoErelease={"non trovato","non trovato"};
+		String[] accessoErelease={"0","0"};
 		List link = source.findAllElements("table");
 		Element tabella = (Element) link.get(0);
 		Element riga=(Element) tabella.findAllElements("tr").get(1);
@@ -267,7 +267,7 @@ return d;
 	public String getNumRelease(String idprogetto) 
 	throws MalformedURLException, IOException,NullPointerException{
 		String urlfinale="http://sourceforge.net/project/showfiles.php?group_id="+idprogetto;
-		String numero="non trovato";
+		String numero="0";
 		Source source = new Source(new URL(urlfinale));
 		Element tfoot=(Element)source.findAllElements("tfoot").get(1);
 		Element release= (Element)tfoot.findAllElements("td").get(1);
@@ -286,7 +286,7 @@ public String extractugn(String url){
 public String[] getPagineAcceduteAllTime(String idprogetto, String ugn) 
 	throws MalformedURLException, IOException,NullPointerException{		
 	String baseUrlalltime="http://sourceforge.net/project/stats/detail.php?group_id="+idprogetto+"&ugn="+ugn+"&mode=alltime&type=sfweb";
-	String[] pagineaccedute={"non trovato","non trovato","non trovato","non trovato"};
+	String[] pagineaccedute={"0","0","0","0"};
 	Source sourcealltime = new Source(new URL(baseUrlalltime));
 	String p=null;
 	Element table = (Element)sourcealltime.findAllElements("table").get(2);
@@ -304,7 +304,7 @@ public String[] getPagineAcceduteAllTime(String idprogetto, String ugn)
 public String getDownloadTime(String idprogetto, String ugn) 
 throws MalformedURLException, IOException,NullPointerException{		
 String baseUrltime="http://sourceforge.net/project/stats/detail.php?group_id="+idprogetto+"&ugn="+ugn+"&mode=alltime&type=prdownload";
-String download="non trovato";
+String download="0";
 Source sourcetime = new Source(new URL(baseUrltime));
 
 String p=null;
