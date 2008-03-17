@@ -19,7 +19,7 @@ public class Week {
 	public String[] getPagineAcceduteWeek(String idprogetto, String ugn) 
 	throws MalformedURLException, IOException,NullPointerException{		
 	String baseUrlweek="http://sourceforge.net/project/stats/detail.php?group_id="+idprogetto+"&ugn="+ugn+"&mode=week&type=sfweb";
-	String[] pagineaccedute={"non trovato","non trovato","non trovato","non trovato"};
+	String[] pagineaccedute={"0","0","0","0"};
 	Source sourceweek = new Source(new URL(baseUrlweek));
 	String p=null;
 	Element table = (Element)sourceweek.findAllElements("table").get(2);
@@ -37,7 +37,7 @@ public class Week {
 	public String getDownloadWeek(String idprogetto, String ugn) 
 	throws MalformedURLException, IOException,NullPointerException{		
 	String baseUrlweek="http://sourceforge.net/project/stats/detail.php?group_id="+idprogetto+"&ugn="+ugn+"&mode=week&type=prdownload";
-	String download="non trovato";
+	String download="0";
 	Source sourceweek = new Source(new URL(baseUrlweek));
 	String p=null;
 	Element table = (Element)sourceweek.findAllElements("table").get(2);
@@ -52,7 +52,7 @@ public class Week {
 
 	public String getEtaReleaseWeek(String ultRelease) {
 		int ultrelease=Integer.parseInt(ultRelease, 10);
-		String finale="null";
+		String finale="0";
 		if(ultrelease<=7){
 			finale=Integer.toString(ultrelease);
 		}
@@ -62,7 +62,7 @@ public class Week {
 
 	public String getUltAdminWeek(String accessAdmin) {
 		int ultadmin=Integer.parseInt(accessAdmin, 10);
-		String finale="null";
+		String finale="0";
 		if(ultadmin<=7){
 			finale=Integer.toString(ultadmin);
 		}
@@ -71,8 +71,8 @@ public class Week {
 	}
 
 	public String getNumReleaseWeek(String ultReleaseWeek) {
-		String finale=null;
-		if (ultReleaseWeek=="null"){
+		String finale="0";
+		if (ultReleaseWeek=="0"){
 			finale="0";
 		}
 		else{
@@ -84,7 +84,7 @@ public class Week {
 	public String getCVSweek(String idprogetto, String ugn) 
 	throws MalformedURLException, IOException,NullPointerException{		
 		String baseUrlweek="http://sourceforge.net/project/stats/detail.php?group_id="+idprogetto+"&ugn="+ugn+"&mode=week&type=cvs";
-		String cvs="non trovato";
+		String cvs="0";
 		Source sourceweek = new Source(new URL(baseUrlweek));
 		String p=null;
 		Element table = (Element)sourceweek.findAllElements("table").get(2);
