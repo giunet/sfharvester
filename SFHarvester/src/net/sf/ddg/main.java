@@ -40,6 +40,7 @@ public class main {
 			String idprogetto = tag.extractIdProgetto(urlEstat.get(i)); //dall URL prendi id progetto
 			String nomeprogetto = urlEstat.get(i+1); //nome del progetto
 			String ProRank=urlEstat.get(i+3);
+			ProRank = ProRank.replaceAll(",","");
 			int pr= Integer.parseInt(ProRank);
 			System.out.println("Il progetto è : "+nomeprogetto);
 			System.out.println("L' ID del progetto è : "+idprogetto);
